@@ -2,9 +2,8 @@ package edu.ynmd.service.interfaces;
 
 import edu.ynmd.model.SysUser;
 import edu.ynmd.tools.PageData;
-
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
+
 
 /**
  * @Author:lb
@@ -44,5 +43,13 @@ public interface UserService {
      * @return
      */
     SysUser findUserById(String id);
+
+
+    /**
+     * 获取session
+     * @param request
+     * @return
+     */
+    SysUser getSession(HttpServletRequest request);
 
 }

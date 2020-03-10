@@ -1,25 +1,24 @@
 package edu.ynmd.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
 /**
  * @Author:lb
- * @date:2020/3/9 14:24
+ * @date:2020/3/10 13:33
  * @description:
  */
 @Entity
 public class Role {
     private String id;
-    private String name;
+    private String roleName;
     private Byte state;
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     public String getId() {
         return id;
     }
@@ -29,13 +28,13 @@ public class Role {
     }
 
     @Basic
-    @Column(name = "name")
-    public String getName() {
-        return name;
+    @Column(name = "role_name")
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     @Basic
@@ -54,12 +53,12 @@ public class Role {
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
         return Objects.equals(id, role.id) &&
-                Objects.equals(name, role.name) &&
+                Objects.equals(roleName, role.roleName) &&
                 Objects.equals(state, role.state);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, state);
+        return Objects.hash(id, roleName, state);
     }
 }

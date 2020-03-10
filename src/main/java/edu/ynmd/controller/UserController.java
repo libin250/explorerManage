@@ -1,8 +1,9 @@
 package edu.ynmd.controller;
 
 import edu.ynmd.model.SysUser;
-import edu.ynmd.service.Impl.UserServiceImpl;
+import edu.ynmd.service.interfaces.UserService;
 import edu.ynmd.tools.Result;
+import edu.ynmd.tools.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @CrossOrigin
 public class UserController {
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private UserService userService;
 
     /**
      * 添加
@@ -28,7 +29,7 @@ public class UserController {
      */
     @PostMapping("saveUser")
     public Result saveUser(@RequestBody SysUser user){
-        return Result.success(userServiceImpl.saveUser(user));
+        return Result.success(userService.saveUser(user));
     }
 
 
@@ -41,7 +42,7 @@ public class UserController {
     public Result findUserList(@RequestParam(defaultValue = "1",name="pageNo") int pageNo,
                                @RequestParam(defaultValue = "10",name="pageSize") int pageSize,
                               SysUser user) {
-        return Result.success(userServiceImpl.findUserList(pageNo, pageSize, user));
+        return Result.success(userService.findUserList(pageNo, pageSize, user));
     }
 
     /**
@@ -51,7 +52,7 @@ public class UserController {
      */
     @GetMapping("findUserById")
     public Result findUserById(String id){
-        return Result.success(userServiceImpl.findUserById(id));
+        return Result.success(userService.findUserById(id));
     }
 
     /**
@@ -61,7 +62,18 @@ public class UserController {
      */
     @PostMapping("login")
     public Result login(HttpServletRequest request,@RequestBody SysUser user){
-        return Result.success(userServiceImpl.login(request,user.getUserName(),user.getPassWord()));
+        return Result.success(userService.login(request,user.getUserName(),user.getPassWord()));
+    }
+
+
+    /**
+     * 获取session
+     * @param request
+     * @return
+     */
+    @GetMapping("getSession")
+    public Result getSession(HttpServletRequest request){
+        return Result.success(userService.getSession(request));
     }
 
 

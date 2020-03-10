@@ -6,14 +6,15 @@ import edu.ynmd.service.interfaces.UserService;
 import edu.ynmd.tools.DataHelper;
 import edu.ynmd.tools.PageData;
 import edu.ynmd.tools.UserHelper;
+import edu.ynmd.vo.SysUserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-
 import java.util.List;
+
 
 
 /**
@@ -30,7 +31,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public PageData findUserList(int pageNo, int pageSize, SysUser user) {
-        String querySql = " select id,user_name,pass_word,user_true_name,user_sex,user_age,user_idnumber,user_phone,role_id,state from sys_user ";
+        String querySql = "select id,role_id, (select role_name from role where id=sys_user.role_id) as role_name , " +
+                "user_name,user_true_name,pass_word,user_sex,user_age,user_idnumber,user_phone,state from sys_user";
         List<String> condSql = new ArrayList<>();
         if (null != user.getState()) {
             condSql.add("  state =" + user.getState());
@@ -47,7 +49,7 @@ public class UserServiceImpl implements UserService {
         if (condSql.size() > 0) {
             querySql += " WHERE " + String.join(" AND ", condSql);
         }
-        return DataHelper.pageQuery(jdbcTemplate, querySql + " order by user_name ", pageNo, pageSize, SysUser.class);
+        return DataHelper.pageQuery(jdbcTemplate, querySql + " order by user_name,state ", pageNo, pageSize, SysUserVo.class);
     }
 
 
@@ -59,6 +61,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public SysUser findUserById(String id) {
         return userDao.findById(id).orElse(null);
+    }
+
+    @Override
+    public SysUser getSession(HttpServletRequest request) {
+        return UserHelper.getSession(request);
     }
 
     @Override

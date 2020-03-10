@@ -1,27 +1,26 @@
 package edu.ynmd.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
 /**
  * @Author:lb
- * @date:2020/3/9 14:24
+ * @date:2020/3/10 13:33
  * @description:
  */
 @Entity
 public class Functions {
     private String id;
-    private String name;
+    private String funName;
     private String pid;
     private String url;
     private Byte state;
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     public String getId() {
         return id;
     }
@@ -31,13 +30,13 @@ public class Functions {
     }
 
     @Basic
-    @Column(name = "name")
-    public String getName() {
-        return name;
+    @Column(name = "fun_name")
+    public String getFunName() {
+        return funName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFunName(String funName) {
+        this.funName = funName;
     }
 
     @Basic
@@ -76,7 +75,7 @@ public class Functions {
         if (o == null || getClass() != o.getClass()) return false;
         Functions functions = (Functions) o;
         return Objects.equals(id, functions.id) &&
-                Objects.equals(name, functions.name) &&
+                Objects.equals(funName, functions.funName) &&
                 Objects.equals(pid, functions.pid) &&
                 Objects.equals(url, functions.url) &&
                 Objects.equals(state, functions.state);
@@ -84,6 +83,6 @@ public class Functions {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, pid, url, state);
+        return Objects.hash(id, funName, pid, url, state);
     }
 }

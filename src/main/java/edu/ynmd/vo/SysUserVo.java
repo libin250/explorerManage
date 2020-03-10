@@ -8,13 +8,13 @@ import edu.ynmd.model.SysUser;
  * @description:
  */
 public class SysUserVo extends SysUser {
-    private String role_name;
+    private String roleName;
 
-    public String getRole_name() {
-        return role_name;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole_name(String role_name) {
-        this.role_name = role_name;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

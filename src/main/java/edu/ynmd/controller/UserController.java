@@ -6,6 +6,8 @@ import edu.ynmd.tools.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Author:lb
  * @date:2020/3/2 16:21
@@ -36,7 +38,9 @@ public class UserController {
      * @return
      */
     @GetMapping("findUserList")
-    public Result findUserList(int pageNo, int pageSize, SysUser user) {
+    public Result findUserList(@RequestParam(defaultValue = "1",name="pageNo") int pageNo,
+                               @RequestParam(defaultValue = "10",name="pageSize") int pageSize,
+                              SysUser user) {
         return Result.success(userServiceImpl.findUserList(pageNo, pageSize, user));
     }
 
@@ -56,8 +60,8 @@ public class UserController {
      * @return
      */
     @PostMapping("login")
-    public Result login(@RequestBody SysUser user){
-        return Result.success(userServiceImpl.login(user.getUserName(),user.getPassWord()));
+    public Result login(HttpServletRequest request,@RequestBody SysUser user){
+        return Result.success(userServiceImpl.login(request,user.getUserName(),user.getPassWord()));
     }
 
 

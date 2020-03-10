@@ -5,12 +5,14 @@ import edu.ynmd.model.SysUser;
 import edu.ynmd.service.interfaces.UserService;
 import edu.ynmd.tools.DataHelper;
 import edu.ynmd.tools.PageData;
+import edu.ynmd.tools.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -60,7 +62,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(String userName, String passWord) {
-        return userDao.findByUserNameAndPassWord(userName, passWord) != null ? "登陆成功" : "登录失败";
+    public String login(HttpServletRequest request,String userName, String passWord) {
+        SysUser user=userDao.findByUserNameAndPassWord(userName, passWord);
+        if(user!=null){
+            UserHelper.setSession(request,user);
+            return  "登陆成功";
+        }
+        return  "登录失败";
     }
+
+
 }

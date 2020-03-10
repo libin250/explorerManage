@@ -7,8 +7,8 @@ import java.util.Objects;
 
 /**
  * @Author:lb
- * @date:2020/3/2 15:09
- * @description:权限模型类
+ * @date:2020/3/9 14:24
+ * @description:
  */
 @Entity
 @Table(name = "role_fun", schema = "test", catalog = "")
@@ -18,9 +18,9 @@ public class RoleFun {
     private String funId;
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    @Column(name = "id")
     public String getId() {
         return id;
     }

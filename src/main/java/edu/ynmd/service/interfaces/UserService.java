@@ -3,6 +3,9 @@ package edu.ynmd.service.interfaces;
 import edu.ynmd.model.SysUser;
 import edu.ynmd.tools.PageData;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+
 /**
  * @Author:lb
  * @date:2020/3/6 16:11
@@ -32,7 +35,7 @@ public interface UserService {
      * @param passWord
      * @return
      */
-    String login(String userName, String passWord);
+    String login(HttpServletRequest request,String userName, String passWord);
 
 
     /**
@@ -41,4 +44,5 @@ public interface UserService {
      * @return
      */
     SysUser findUserById(String id);
+
 }

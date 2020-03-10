@@ -7,8 +7,8 @@ import java.util.Objects;
 
 /**
  * @Author:lb
- * @date:2020/3/2 15:09
- * @description:角色模型类
+ * @date:2020/3/9 14:24
+ * @description:
  */
 @Entity
 public class Role {
@@ -17,9 +17,9 @@ public class Role {
     private Byte state;
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    @Column(name = "id")
     public String getId() {
         return id;
     }

@@ -2,7 +2,7 @@ package edu.ynmd.tools;
 
 /**
  * @Author:lb
- * @date:2020/3/5 11:03
+ * @date:2020/3/9 16:47
  * @description:
  */
 public class ValueLabel {
@@ -66,7 +66,7 @@ public class ValueLabel {
 
     public int hashCode() {
         Object $value = this.getValue();
-        int result =59 + ($value == null ? 43 : $value.hashCode());
+        int result = 59 + ($value == null ? 43 : $value.hashCode());
         Object $label = this.getLabel();
         result = result * 59 + ($label == null ? 43 : $label.hashCode());
         return result;
@@ -81,3 +81,4 @@ public class ValueLabel {
         this.label = label;
     }
 }
+

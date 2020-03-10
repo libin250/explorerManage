@@ -24,7 +24,8 @@ public class UserHelper {
         return  (SysUser)session.getAttribute("user");
     }
 
-    public static String  getUserId(HttpServletRequest request){
-        return getSession(request).getId();
+    public static void removeSession(HttpServletRequest request){
+        HttpSession session= request.getSession();
+        session.removeAttribute("user");
     }
 }

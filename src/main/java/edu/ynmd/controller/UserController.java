@@ -77,4 +77,10 @@ public class UserController {
     }
 
 
+    @GetMapping("removeSession")
+    public Result removeSession(HttpServletRequest request){
+        return Result.success(userService.removeSession(request));
+    }
+
+
 }

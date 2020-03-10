@@ -52,4 +52,10 @@ public interface UserService {
      */
     SysUser getSession(HttpServletRequest request);
 
+    /**
+     * 删除session
+     * @param request
+     */
+    boolean removeSession(HttpServletRequest request);
+
 }

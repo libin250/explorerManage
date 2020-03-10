@@ -69,6 +69,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean removeSession(HttpServletRequest request) {
+        UserHelper.removeSession(request);
+        return true;
+    }
+
+    @Override
     public String login(HttpServletRequest request,String userName, String passWord) {
         SysUser user=userDao.findByUserNameAndPassWord(userName, passWord);
         if(user!=null){
